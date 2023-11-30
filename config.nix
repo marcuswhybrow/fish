@@ -1,9 +1,9 @@
-{ pkgs, ... }: let 
+{ pkgs, inputs, ... }: let 
   hyprland = "${pkgs.hyprland}/bin/Hyprland";
-  tmux = "${pkgs.tmux}/bin/tmux";
-  vim = "${pkgs.neovim}/bin/neovim";
-  git = "${pkgs.git}/bin/git";
-  starship = "${pkgs.starship}/bin/starship";
+  tmux = "${inputs.tmux.packages.x86_64-linux.tmux}/bin/tmux";
+  # neovim = "${inputs.neovim.packages.x86_64-linux.neovim}/bin/neovim";
+  git = "${inputs.git.packages.x86_64-linux.git}/bin/git";
+  starship = "${inputs.starship.packages.x86_64-linux.starship}/bin/starship";
   direnv = "${pkgs.direnv}/bin/direnv";
 in ''
   if status is-login
@@ -17,8 +17,8 @@ in ''
     abbr --add c "${tmux} new -A -s config -c ~/.config"
     abbr --add r work_on_repository
 
-    abbr --add t ${vim} ~/obsidian/Timeline/$(date +%Y-%m-%d).md
-    abbr --add y ${vim} ~/obsidian/Timeline/$(date +%Y-%m-%d --date yesterday).md
+    abbr --add t vim ~/obsidian/Timeline/$(date +%Y-%m-%d).md
+    abbr --add y vim ~/obsidian/Timeline/$(date +%Y-%m-%d --date yesterday).md
 
     abbr --add osswitch sudo nixos-rebuild switch
     abbr --add ostest sudo nixos-rebuild test

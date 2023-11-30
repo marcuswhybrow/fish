@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    tmux.url = "github:marcuswhybrow/tmux";
+    # neovim = "github:marcuswhybrow/neovim";
+    git.url = "github:marcuswhybrow/git";
+    starship.url = "github:marcuswhybrow/starship";
   };
 
   outputs = inputs: let
