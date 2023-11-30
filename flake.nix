@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "Fish shell configured by Marcus";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
