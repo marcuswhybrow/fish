@@ -1,8 +1,7 @@
-{ pkgs, inputs, ... }: let 
-  hyprland = "${inputs.hyprland.packages.x86_64-linux.hyprland}/bin/Hyprland";
-  neovim = "${inputs.neovim.packages.x86_64-linux.nvim}/bin/nvim";
-  git = "${inputs.git.packages.x86_64-linux.git}/bin/git";
-  starship = "${inputs.starship.packages.x86_64-linux.starship}/bin/starship";
+{ pkgs, inputs, mwpkgs, ... }: let 
+  neovim = "${mwpkgs.neovim}/bin/vim";
+  git = "${mwpkgs.git}/bin/git";
+  starship = "${mwpkgs.starship}/bin/starship";
   direnv = "${pkgs.direnv}/bin/direnv";
 in ''
   if status is-interactive

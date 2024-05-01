@@ -3,17 +3,25 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    neovim.url = "github:marcuswhybrow/neovim";
-    git.url = "github:marcuswhybrow/git";
-    starship.url = "github:marcuswhybrow/starship";
+    mwpkgs = {
+      url = "github:marcuswhybrow/mwpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-    configText = import ./config.nix { inherit pkgs inputs; };
+    mwpkgs = inputs.mwpkgs.packages.x86_64-linux;
+    configText = import ./config.nix { inherit pkgs inputs mwpkgs; };
     config = pkgs.writeTextDir "share/fish/vendor_conf.d/config.fish" configText;
     functions = {
-      fish_greeting = ''echo (whoami) @ (hostname)'';
+      fish_greeting = ''
+        echo (whoami) @ (hostname)
+        set updates (${mwpkgs.flake-updates}/bin/flake-updates --flake ~/Repos/nixos --output '%s')
+        if test updates != ""
+          echo "NixOS has $updates available"
+        end
+      '';
       code = ''
         set name (ls $HOME/Repositories | fzf --bind tab:up,btab:down)
         tmux new \
