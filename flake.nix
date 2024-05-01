@@ -19,7 +19,7 @@
         echo (whoami) @ (hostname)
         set updates (${mwpkgs.flake-updates}/bin/flake-updates --flake ~/Repos/nixos --output '%s')
         if test updates != ""
-          echo "NixOS has $updates available"
+          echo "$updates updates available"
         end
       '';
       code = ''
