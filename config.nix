@@ -1,6 +1,5 @@
 { pkgs, inputs, mwpkgs, ... }: let 
   neovim = "${mwpkgs.neovim}/bin/vim";
-  git = "${mwpkgs.git}/bin/git";
   starship = "${mwpkgs.starship}/bin/starship";
   direnv = "${pkgs.direnv}/bin/direnv";
 in ''
@@ -14,12 +13,6 @@ in ''
 
     abbr --add osswitch sudo nixos-rebuild switch
     abbr --add ostest sudo nixos-rebuild test
-
-    abbr --add gs ${git} status
-    abbr --add ga ${git} add .
-    abbr --add gc ${git} commit
-    abbr --add gp ${git} push
-    abbr --add gd ${git} diff
 
     ${starship} init fish | source
     ${direnv} hook fish | source
