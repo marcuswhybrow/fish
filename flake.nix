@@ -18,7 +18,7 @@
       fish_greeting = ''
         echo (whoami) @ (hostname)
         set updates (${mwpkgs.flake-updates}/bin/flake-updates --flake ~/Repos/nixos --output '%s')
-        if test updates != ""
+        if test -n "$updates"
           echo "$updates updates available"
         end
       '';
