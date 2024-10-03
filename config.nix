@@ -1,4 +1,4 @@
-{ pkgs, inputs, mwpkgs, ... }: let 
+{ pkgs, inputs, ... }: let 
   direnv = "${pkgs.direnv}/bin/direnv";
 in ''
   if status is-interactive
