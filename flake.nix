@@ -19,14 +19,6 @@
           echo "$updates updates available"
         end
       '';
-      code = ''
-        set name (ls $HOME/Repositories | fzf --bind tab:up,btab:down)
-        tmux new \
-          -A \
-          -s $name \
-          -c $HOME/Repositories/$name
-
-      '';
     };
     mkFunctionPkg = name: def: (pkgs.writeTextDir "share/fish/vendor_functions.d/${name}.fish" ''
       function ${name}
