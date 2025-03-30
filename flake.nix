@@ -24,7 +24,7 @@
         echo (whoami) @ (hostname)
         set updates (${flakeUpdates}/bin/flake-updates --flake ~/Repos/nixos --output '%s' --defer)
         if test -n "$updates"
-          echo "$updates updates available"
+          printf "%'.f updates available\n" $updates
         end
       end
     '';
